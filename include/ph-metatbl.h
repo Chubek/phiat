@@ -5,7 +5,7 @@
 
 typedef struct PH_Metatbl
 {
-   uint32_t obj_id;
+   uint64_t obj_id;
    size_t obj_size;
 
    struct PH_Metaroutine *mr_hash;
@@ -18,6 +18,11 @@ typedef struct PH_Metatbl
    struct PH_Metaroutine *mr_addrof;
    struct PH_Metaroutine *mr_serialize;
    struct PH_Metaroutine *mr_deserialize;
+
+   struct PH_Metaroutine *mr_methodtbl;
+   size_t methtbl_len, methtbl_cap;
+
+   struct PH_Symtbl *stab;
 } PH_Metatbl;
 
 
