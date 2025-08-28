@@ -1,8 +1,8 @@
 #ifndef PH_SYMTBL
 #define PH_SYMTBL
 
-#define PH_SYMTBL_GROWTH_RATIO 0.85
-#define PH_SYMTBL_GROWTH_FACTOR 2
+#define PH_HASHTBL_GROWTH_RATIO 0.85
+#define PH_HASHTBL_GROWTH_FACTOR 2
 
 typedef struct PH_Entry
 {
