@@ -24,7 +24,7 @@ typedef struct PH_Object
     OBJ_Coprocess,
     OBJ_CFunction,
     OBJ_CType,
-    OBJ_Package,
+    OBJ_Bundle,
     OBJ_Exception,
     OBJ_Regexp,
   } type;
@@ -48,7 +48,7 @@ typedef struct PH_Object
     struct PH_Coprocess *as_coprocess;
     struct PH_CFunction *as_cfunction;
     struct PH_CType *as_ctype;
-    struct PH_Package *as_package;
+    struct PH_Bundle *as_package;
     struct PH_Exception *as_exception;
     struct PH_Regexp *as_regexp;
   };
