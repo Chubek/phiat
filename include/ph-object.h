@@ -18,8 +18,8 @@ typedef struct PH_Object
     OBJ_Integer,
     OBJ_Rational,
     OBJ_Real,
+    OBJ_Complex,
     OBJ_Coroutine,
-    OBJ_Subroutine,
     OBJ_Metaroutine,
     OBJ_Coprocess,
     OBJ_CFunction,
@@ -27,6 +27,7 @@ typedef struct PH_Object
     OBJ_Bundle,
     OBJ_Exception,
     OBJ_Regexp,
+    OBJ_Chunk,
   } type;
 
   union
@@ -42,15 +43,16 @@ typedef struct PH_Object
     struct PH_Integer *as_integer;
     struct PH_Rational *as_rational;
     struct PH_Real *as_real;
+    struct PH_Complex *as_complex;
     struct PH_Coroutine *as_coroutine;
-    struct PH_Subroutine *as_subroutine;
     struct PH_Metaroutine *as_metaroutine;
     struct PH_Coprocess *as_coprocess;
     struct PH_CFunction *as_cfunction;
     struct PH_CType *as_ctype;
-    struct PH_Bundle *as_package;
+    struct PH_Bundle *as_bundle;
     struct PH_Exception *as_exception;
     struct PH_Regexp *as_regexp;
+    struct PH_Chunk *as_chunk;
   };
 
   struct PH_Object *next;
