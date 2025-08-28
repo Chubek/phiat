@@ -6,7 +6,7 @@
 
 typedef struct PH_Entry
 {
-  strict PH_Object *key;
+  const struct PH_Object *key;
   struct PH_Object *value;
 } PH_Entry;
 
