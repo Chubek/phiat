@@ -4,31 +4,28 @@
 
 
 \newcommand{\nm}{Diyrbal\xspace}
+\newcommand{\gcmeth}{Mark\&Compact\xspace}
 
 \begin{document}
 
-\section{General description \& philosophy of \nm}
+\section{General description \& features}
 
-\subsection{Some lamentations}
+\subsection{\nm: A short introduction}
 
-\nm is a general-purpose, extensible, type-safe and statically-typed imperative Wirthian-esque scripting/programming language with major support for functional programming. 
+\nm is a general-purpose, extensible, type-safe and statically-typed imperative Wirthian-esque scripting/programming language with stellar support for multi-paradigm programming (functional and object-oriented). It is both AoT'd\footnote{Ahead-of-time compilation} and JIT'd\footnote{Just-in-time compilation}.
 
-The language offers \textbf{little} in terms of Object-oriented Programming. Recently, there has been a \textit{noticable} push from diurnal programmers towards factoring out OOP altogether. This is an specification and not a manifesto, so we'll forgo the details as of \textit{why} OOP is bad (save for what is revealed throughout the specs, related to constructs and features of \nm). This should be simple enough: \textsc{OOP is corporate agony}.
+Furthermore, \nm uses constraint-based type inference (a feature of functional languages, and more so, Rust) to allow user to forgo specification of types during programming.
 
-But at the same time, the author believes functional programming is too byzantine for the daily needs of professional programmers. Be it languages like the ML-family of languages (OCaml, SML, F#) that work in side-effects by the means of side-verification, or languages like Clean and Haskell which do away with side-effects altogether.
+After writing your scripts and programs, you specify whether you wish for your program to be interpreted on-the-go, or compiled to a process image, which is later read by a VM. The on-the-go interpretation also relies on a VM, but the set of opcodes used for interpretation, and compilation, are different.
 
-Languages like Lua have been trying to remain minimal, whilst trying to bring in the experience of ``neat'' functional-style programming to fields oblique as game development (where side-effect is not only desired, but also, mandatory!). The Lisp family of languages (Scheme, Common Lisp, Clojure) have always taken the middle field. For example, Scheme allows for flow-of-control ``statements'' through a construct called \textit{the Continuation}. Other Lisps forgo this pedantry altogether, and implement flow-of-control constructs ad verbatim, just wrapping it inside an S-Expression wrapper paper to make it seem \textit{science-y}. In fact, the original Lisp was going to be shipped with a Fortran-like syntax called the ``M-Expression'', but McCarthy decided that ''S-Expressions appeal to the logician'' (besides being much easier to parse!).
+\nm ships with a runtime to execute the process images. The users can download, and install the runtime only. You may have noticed a lot of similarities with Java now. In a way, \nm is a hybrid of Java, and the less byzantine scripting languages of Unix (Perl, Python, Ruby).
 
-There are, also, hidden gems like the Tcl (Tool Command Language) scripting environment (which also include Tk, an easy GUI tool, ported to many languages) that take what Lisp did (in fact, in the opinion of many Tcl old-timers, Tcl and Lisp are isomorphic, proving it is besides the point of this document) and make it more appealing to the day-to-day system administrator.
+Both the VMs use \gcmeth method of garbage collection. % TODO: add more info on GC
 
-I believe a good general-purpose scripting language must be a bastard child of many others. This is not 1984 anymore (\textit{or is it?}), and we are not Larry Wall, throwing bags of mud at the walls of Perl, seeing which of them stick. Gone are the days when Guido van Rossum had to create Python on company time, and get into legal trouble because of it, simply because the garden-variety PCs of the time lacked the resources needed to compile, and run a scripting language, making Rossum reliant on the workstations of his company. Furthermore, the culture around PLT dictates boastfulness and self-aggrandizement (this document is an example of such acts!). Gone are days when Matz created Ruby, and kept it to himself for several years.
+In the following sections, we'll explain the features yieled by this implementation of \nm.
 
-Yes, \textit{everyone} can design, implement, promote and champion a scripting, or even a programming language (compiled, AoT'd, etc). This is truly a golden age for implementing a new language. And, if you are worried that people \textit{won't use your language}, then, you are wrong. If your implementation is stable, people \textit{will} use it. Or, better, if you have taken another existing language, and re-implemented it, perhaps, having defined a superset, then people would not have a reason to not use your compiler/interpreter.
+\subsection{Functional features}
 
-I chose a novel syntax and semantics thereof for \nm because I am working on several projects alongside it that are, by all accounts, an implementation of an existing language. \nm is, as such, a labor of love, more than something educational, or wishing to go on my resume.
 
-If you are wondering, no, \nm is not a language that is a result of reading ``Crafting Interpreters'' by Bob Nystrom. I do not dislike this book, mind you, but I prefer reading more... scientfic books, so to speak! No hate on Bob. He's a self-taught man, and I can't claim I know more than he does, as I only got five semesters of SWE (not even CS!) under my belt. I am 99\% self-taught. But Bob does not stic to \textit{science}. The language he implements, Lox, is a garden-variety scripting language similar to Lua in semantics, and Python in syntax. I do not wish to copy someone elses' code (yes, I do use LLMs sometimes, but I never \textit{copy} code, unless it's a worthless script that I've generated to save time).
-
-As we go further into this document, you will find out what I have in store for you.
 
 \end{document}
