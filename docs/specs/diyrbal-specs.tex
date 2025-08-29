@@ -1,10 +1,19 @@
 \DocumentMetadata{}
 \documentclass[a4paper,12pt]{article}
 \usepackage{xspace}
+\usepackage{cleveref}
+\usepackage[
+	style=authoryear,
+	backend=biber,
+	sorting=nyt,
+	maxbibnames=99]{biblatex}
 
+\addbibresource{references.bib}
 
 \newcommand{\nm}{Diyrbal\xspace}
 \newcommand{\gcmeth}{Mark\&Compact\xspace}
+
+\newcommand{\citework}[1]{\parencite{#1}}
 
 \begin{document}
 
@@ -30,11 +39,11 @@ In the following sections, we'll explain the features yieled by this implementat
 
 Algebraic effects are made of \textbf{effects} and their \textbf{handlers}. With an effect, you specify \textit{what to expect}; with a handler, you specify \textit{how to react to those expectations}.
 
-These systems are rife with potential for implementing I/O, state manipipulation, exception handling, non-determinism and concurrency. As such, I chose to wrap all the semantics of side-effects into my own Algebraic effect system, as specified by the operational semantics of \nm, specified later at \ref{}.
+These systems are rife with potential for implementing I/O, state manipipulation, exception handling, non-determinism and concurrency. As such, I chose to wrap all the semantics of side-effects into my own Algebraic effect system, as specified by the operational semantics of \nm, specified later at \cref{}.
 
-Of course, the system is wrapped in layers of intrinsic syntactic sugar. Otherwise, it would have been very difficult for the user to achieve simple tasks, such as assignment or printing to STDOUT. The algebraic effects for these intrinsic operations are handled behind the scene, and these are zero-cost abstractions: they do not affect the runtime. How this is done is discussed at \ref{}.
+Of course, the system is wrapped in layers of intrinsic syntactic sugar. Otherwise, it would have been very difficult for the user to achieve simple tasks, such as assignment or printing to STDOUT. The algebraic effects for these intrinsic operations are handled behind the scene, and these are zero-cost abstractions: they do not affect the runtime. How this is done is discussed at \cref{}.
 
-We will delve further into the Algebraic effect/handler system in \ref{}.
+We will delve further into the Algebraic effect/handler system in \cref{}.
 
 \subsection{Static vs. dynamic constructs}
 
@@ -42,7 +51,7 @@ When it comes to static vs. dynamic, \nm supports \textit{both}:
 
 \begin{enumerate}
 	\item Static records (product types) and dynamic records (``bundles'');
-	\item Static enumerations (sum types) and dynamic enumerations (``polymorphic atomics'');
+	\item Static enumerations (sum types) and dynamic enumerations (``polymorphic variants'');
 	\item Static functions (``subroutines'') and dynamic functions s(named closures);
 	\item Static arrays (baked into process image) and dynamic arrays;
 	\item Static methods and dynamic methods (class fields that are closures);
@@ -51,7 +60,15 @@ When it comes to static vs. dynamic, \nm supports \textit{both}:
 
 As we see later, dynamic constructs are \textit{reflectable} and \textit{introspectable}. But static constructs are only the latter. 
 
-During optimization (see \ref{}), some closures are \textit{lifted}, making them pragmatically equivocal to a subroutine. The compiles senses when it is appropriate to lift a closure, it won't do so without regards to dynamicity of the closure.
+During optimization (see \cref{}), some closures are \textit{lifted}, making them pragmatically equivocal to a subroutine. The compiles senses when it is appropriate to lift a closure, it won't do so without regards to dynamicity of the closure. All these constructs are discussed at length in a later section of this document.
+
+\subsection{\gcmeth garbage collection}
+
+As we discussed earlier, \nm is both an scripting, an a programming language. Thusly, for the scripting part of the deal, we need a robust, managed memory model. I chose the \gcmeth method of garbage collection for this endeavor.
+
+Due to \textit{non-restrict} nature of \nm, \citework{} had a strong influence in choosing \gcmeth.
+
+\notebox{This implementation of \nm has been thoroughly checked with both Address Sanitizer and Valgrind for possible memory leaks, on several test scripts.}
 
 
 
