@@ -199,7 +199,15 @@ Within a bundle definition, you can change how a bundle instance reacts to these
 	\addop{..}{binaryConcat}
 \end{oplist}
 
-\notebox{Since assignement is an statement, \nm does not yield inplace operators, like C and similar languages do. However, the assignment statements, as we shall see, provide a variety of tools to simulate them!}
+\begin{oplist}{Assignment operators}
+	\addop{:=}{assnInit}
+	\addop{<-}{assnRef}
+	\addop{->}{assnDeref}
+	\addop{=>}{assnCopy}
+	\addop{~>}{assnBoxCopy}
+	\addop{<~}{assnUnbox}
+	\addop{.=}{assnValue}
+\end{oplist}
 
 \begin{oplist}{Relational operators}
 	\addop{=}{relEq}
