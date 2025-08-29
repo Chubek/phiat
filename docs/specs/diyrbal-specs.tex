@@ -2,6 +2,7 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage{xspace}
 \usepackage{cleveref}
+\usepackage{grammar}
 \usepackage[
 	style=authoryear,
 	backend=biber,
@@ -70,6 +71,20 @@ Due to \textit{non-restrict} nature of \nm, \citework{} had a strong influence i
 
 \notebox{This implementation of \nm has been thoroughly checked with both Address Sanitizer and Valgrind for possible memory leaks, on several test scripts.}
 
+% TODO: discuss more features
 
+\section{The grammar \& syntax for \nm}
+
+\subsection{Philosophy behind the syntax}
+
+My motto is, a language must be \textit{pretty} if one wishes for it to take off! 'Tis true that, if your syntax is decoupled from your semantics and pragmatics, then, you could install any syntax at the front-end of your compiler. But that leads to some weirdness. A syntax that is \textit{truly} decoupled from the semantics drives the designer to some unforseen implications, and complications thereof, ramifications of which will cause the userbase to wish they did not invest the time and effort in learning it.
+
+Take for example, Java vs. Python. There's many languages riding on the hind legs of Java platform and JVM. There's not that many for Python, though. That is because the VM for Python is strongly coupled with its syntax. The same design choices made for Python have been made for \nm. Java's VM, on the other hand, is low-level, and with it, you can construct any language. I tried to follow principles of Java as well as Python's, making syntax of \nm coupled and at the same time, decoupled from its semantics and pragmatics.
+
+\nm is arguably a \textit{Wirthian language}. It follows the same style as those of Pascal, Oberon and Modula-2. It does away with several restrictions (especially the enforcement of pre-declaration), and it also brings in several features for \nm's functional and OOP features.
+
+Another influence for \nm are the ML family of languages (SML, OCaml, F#). The functional aspects of \nm closely follow that of ML's.
+
+For the OOP aspects of \nm, it was not any of the hard-hitters like Java or C++ that influenced \nm, it was, rather, Common Lisp's Object Model. 'Tis true that, \nm is not expressed symbolically via S-Expressions, but the syntax and semantics of OOP follows that of Common Lisp's.
 
 \end{document}
