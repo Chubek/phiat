@@ -24,7 +24,34 @@ Both the VMs use \gcmeth method of garbage collection. % TODO: add more info on 
 
 In the following sections, we'll explain the features yieled by this implementation of \nm.
 
-\subsection{Functional features}
+\subsection{Algebraic effects}
+
+\nm tries to make coding easy, but more so, \textit{correct}. Algebraic effects, which came around at the beginning of the 2010s, hold the key to giving a language ``correct'' side-effect semantics, without relying much on the obliqueness of monads, or at the other end of the spectrum, ignroing side-effect semantics altogether.
+
+Algebraic effects are made of \textbf{effects} and their \textbf{handlers}. With an effect, you specify \textit{what to expect}; with a handler, you specify \textit{how to react to those expectations}.
+
+These systems are rife with potential for implementing I/O, state manipipulation, exception handling, non-determinism and concurrency. As such, I chose to wrap all the semantics of side-effects into my own Algebraic effect system, as specified by the operational semantics of \nm, specified later at \ref{}.
+
+Of course, the system is wrapped in layers of intrinsic syntactic sugar. Otherwise, it would have been very difficult for the user to achieve simple tasks, such as assignment or printing to STDOUT. The algebraic effects for these intrinsic operations are handled behind the scene, and these are zero-cost abstractions: they do not affect the runtime. How this is done is discussed at \ref{}.
+
+We will delve further into the Algebraic effect/handler system in \ref{}.
+
+\subsection{Static vs. dynamic constructs}
+
+When it comes to static vs. dynamic, \nm supports \textit{both}:
+
+\begin{enumerate}
+	\item Static records (product types) and dynamic records (``bundles'');
+	\item Static enumerations (sum types) and dynamic enumerations (``polymorphic atomics'');
+	\item Static functions (``subroutines'') and dynamic functions s(named closures);
+	\item Static arrays (baked into process image) and dynamic arrays;
+	\item Static methods and dynamic methods (class fields that are closures);
+	\item Static hashtables (look-up tables) and dynamic hashtables;
+\end{enumerate}
+
+As we see later, dynamic constructs are \textit{reflectable} and \textit{introspectable}. But static constructs are only the latter. 
+
+During optimization (see \ref{}), some closures are \textit{lifted}, making them pragmatically equivocal to a subroutine. The compiles senses when it is appropriate to lift a closure, it won't do so without regards to dynamicity of the closure.
 
 
 
