@@ -165,57 +165,65 @@ The following tables list all the reserved keywords, and type terms for \nm, in 
 
 In \nm, assignment is an \textit{statement}, and not an expression. Therefore, I do not consider assignment to be a binary operator, the way it is in other C-dervied languages. However, \nm has a rich set of binary and unary operators, prefix and postfix. The following table shows them all.
 
-Within a bundle definition, you can change how a bundle instance reacts to these operators. See \cref{}.
+Within a bundle definition, you can change how a bundle instance reacts to these operators using. See \cref{}.
 
 
-\begin{oplist}{Unary operators}
-	\addop{+}{unaryPlus}
-	\addop{-}{unaryMinus}
-	\addop{++}{unaryPreIncrement}
-	\addop{++}{unaryPostIncrement}
-	\addop{\-\-}{unaryPreDecrement}
-	\addop{\-\-}{unaryPostDecrement}
-	\addop{~}{unaryNot}{Unary bitwise not}
-	\addop{!}{unaryNegate}
-	\addop{[]}{unaryBracketAccess}
-	\addop{\{\}}{unaryCurlyAccess}
-	\addop{()}{unaryCall}
-	\addop{@}{unaryAddressOf}
-	\addop{^}{unaryDereference}
-	\addop{#}{binarySizeof}
+\begin{oplist}{Unary operators}{unaryOp}
+	\addop{+}{unaryPlus}{prefix}{Ineffective, unless specified by the metamethod}
+	\addop{-}{unaryMinus}{prefix}{Two's complement negation of the operand expression}
+	\addop{++}{unaryPreIncrement}{prefix}{Pre-increment of the operand}
+	\addop{++}{unaryPostIncrement}{postfix}{Post-increment of the operand}
+	\addop{\-\-}{unaryPreDecrement}{prefix}{Pre-decrement of the operand}
+	\addop{\-\-}{unaryPostDecrement}{postfix}{Post-decrement of the operand}
+	\addop{~}{unaryNot}{prefix}{Bitwise-not of the operand}
+	\addop{!}{unaryNegate}{prefix}{Logical negation of the operand}
+	\addop{[,]}{unaryBracketAccess}{postfix}{In aggregate types, accesses the nth item as specified by the enclosed operand}
+	\addop{\{,\}}{unaryCurlyAccess}{postfix}{In tabular types, access the item as specified by the enclosed operand}
+	\addop{(,)}{unaryCall}{postfix}{Treates comma-separated enclosed expressions as actual parameters, and calls the result of evaluation of the operand}
+	\addop{@}{unaryAddressOf}{prefix}{Takes the address of operand}
+	\addop{^}{unaryDereference}{prefix}{Dereferences the operand}
+	\addop{^}{unaryPointerMark}{postfix}{Marks type term as a pointer}
+	\addop{#}{prefix}{unarySizeof}{Returns size of the operand}
 \end{oplist}
 
 \begin{oplist}{Binary operators}
-	\addop{+}{binaryAdd}
-	\addop{-}{binarySub}
-	\addop{*}{binaryTimes}
-	\addop{/}{binaryDiv}
-	\addop{\%}{binaryMod}
-	\addop{^}{binaryXor}
-	\addop{\|}{binaryOr}
-	\addop{\&}{binaryAnd}
-	\addop{\&\&}{binaryConjunct}
-	\addop{\|\|}{binaryDisjunct}
-	\addop{..}{binaryConcat}
+	\addop{+}{binaryAdd}{infix}{Adds operands}
+	\addop{-}{binarySub}{infix}{Subtracts operands}
+	\addop{*}{binaryTimes}{infix}{Multiples operands}
+	\addop{/}{binaryDiv}{infix}{Divides operands}
+	\addop{\%}{binaryMod}{infix}{Module of operands}
+	\addop{^}{binaryXor}{infix}{Exclusive-or of operands}
+	\addop{\|}{binaryOr}{infix}{Bitwise-or of operands}
+	\addop{\&}{binaryAnd}{infix}{Bitwise-and of operands}
+	\addop{<<}{BinaryShl}{infix}{Bitwise logical left shift}
+	\addop{>>}{BinaryShr}{infix}{Bitwise logical right shift}
+	\addop{>>>}{BinaryAsr}{infix}{Bitwise arithmetic right shift}
+	\addop{\&\&}{binaryConjunct}{infix}{Logical conjunction}
+	\addop{\|\|}{binaryDisjunct}{infix}{Logical disjunction}
+	\addop{..}{binaryConcat}{infix}{Concatenate aggregate types}
+	\addop{@}{binaryOffsetof}{infix}{Offset of field in composite type}
+	\addop{.}{binaryMemberAccess}{infix}{Member access}
+	\addop{:}{binaryMethodAccess}{infix}{Method access}
 \end{oplist}
 
 \begin{oplist}{Assignment operators}
-	\addop{:=}{assnInit}
-	\addop{<-}{assnRef}
-	\addop{->}{assnDeref}
-	\addop{=>}{assnCopy}
-	\addop{~>}{assnBoxCopy}
-	\addop{<~}{assnUnbox}
-	\addop{.=}{assnValue}
+	\addop{:=}{assnInit}{infix}{Initial assignment}
+	\addop{<-}{assnRef}{infix}{Stores address of RHS in LHS}
+	\addop{->}{assnDeref}{infix}{Stores value of LHS in RHS}
+	\addop{<=}{assnCopy}{infix}{Copies result of RHS into LHS}
+	\addop{<~}{assnBoxCopy}{infix}{Deep-copies result of RHS into LHS}
+	\addop{~>}{assnUnbox}{infix}{Unboxes LHS into RHS}
+	\addop{.=}{assnValue}{infix}{Regular assignment}
+	\addop{<=>}{assnAlias}{infix}{Alias creation}
 \end{oplist}
 
 \begin{oplist}{Relational operators}
-	\addop{=}{relEq}
-	\addop{<>}{relNe}
-	\addop{>}{relGt}
-	\addop{>=}{relGe}
-	\addop{<}{relLt}
-	\addop{<=}{relLe}
+	\addop{=}{relEq}{infix}{Test whether LHS equals RHS}
+	\addop{<>}{relNe}{infix}{Test whether LHS does \textit{not} equal RHS}
+	\addop{>}{relGt}{infix}{Test whether LHS is greater than RHS}
+	\addop{>=}{relGe}{infix}{Test whether LHS is greater than, or equal to RHS}
+	\addop{<}{relLt}{infix}{Test whether LHS is lesser than RHS}
+	\addop{<=}{relLe}{infix}{Test whether LHS is lesser than, or equal to, RHS}
 \end{oplist}
 
 \end{document}
