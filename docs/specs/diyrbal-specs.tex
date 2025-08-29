@@ -20,19 +20,11 @@
 
 \section{General description \& features}
 
-\subsection{\nm: A short introduction}
+\subsection{Document outlook \& short introduction}
 
-\nm is a higher-order, high-level, general-purpose, extensible, type-safe and statically-typed imperative Wirthian-esque scripting/programming language with stellar support for multi-paradigm programming (functional and object-oriented). It is both AoT'd\footnote{Ahead-of-time compilation} and JIT'd\footnote{Just-in-time compilation}.
+\nm is a higher-order, high-level, statically-typed, type-safe, multi-paradigm programming language with two backends (AoT'd VM with JiT, custom native code emitter) and an easy-to-grasp syntax. The following document specifies the language, and verifies part of the semantics for it.
 
-Furthermore, \nm uses constraint-based type inference (a feature of functional languages, and more so, Rust) to allow user to forgo specification of types during programming.
-
-After writing your scripts and programs, you specify whether you wish for your program to be interpreted on-the-go, or compiled to a process image, which is later read by a VM. The on-the-go interpretation also relies on a VM, but the set of opcodes used for interpretation, and compilation, are different.
-
-\nm ships with a runtime to execute the process images. The users can download, and install the runtime only. You may have noticed a lot of similarities with Java now. In a way, \nm is a hybrid of Java, and the less byzantine scripting languages of Unix (Perl, Python, Ruby).
-
-Both the VMs use \gcmeth method of garbage collection. % TODO: add more info on GC
-
-In the following sections, we'll explain the features yieled by this implementation of \nm.
+% TODO: work in the intro
 
 \subsection{Algebraic effects}
 
@@ -75,6 +67,15 @@ Due to \textit{non-restrict} nature of \nm, \citework{} had a strong influence i
 
 \nm yields a fully-featured C API, that ties into its FFI\footnote{Foreign Function Interface} with C.
 
+\subsection{The VM backend \& bytecode emitter}
+
+% TODO
+
+\subsection{The native-code emitter}
+
+% TODO
+
+% ---
 
 % TODO: discuss more features
 
