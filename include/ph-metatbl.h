@@ -18,7 +18,6 @@ typedef struct PH_Metatbl
    struct PH_Metaroutine *mr_addrof;
    struct PH_Metaroutine *mr_serialize;
    struct PH_Metaroutine *mr_deserialize;
-   struct PH_Symtbl *membtbl;
 } PH_Metatbl;
 
 
