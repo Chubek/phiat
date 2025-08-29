@@ -7,19 +7,19 @@
 #include "ph-object.h"
 #include "ph-utils.h"
 
-PH_Hashtbl *
-ph_hashtbl_create (size_t capacity)
+DIY_Hashtbl *
+diy_hashtbl_create (size_t capacity)
 {
-  PH_Hashtbl *ht = xmalloc (sizeof (PH_Hashtbl));
+  DIY_Hashtbl *ht = xmalloc (sizeof (DIY_Hashtbl));
   ht->cap = capacity;
   ht->len = 0;
-  ht->entries = xcalloc (capacity, sizeof (PH_Entry));
+  ht->entries = xcalloc (capacity, sizeof (DIY_Entry));
   ht->occupied = xcalloc (capacity, sizeof (bool));
   return ht;
 }
 
 void
-ph_hashtbl_destroy (PH_Hashtbl *ht)
+diy_hashtbl_destroy (DIY_Hashtbl *ht)
 {
   xfree (ht->entries);
   xfree (ht->occupied);
@@ -27,15 +27,15 @@ ph_hashtbl_destroy (PH_Hashtbl *ht)
 }
 
 void
-ph_hashtbl_insert (PH_Hashtbl *ht, const PH_Object *key, PH_Object *value)
+diy_hashtbl_insert (DIY_Hashtbl *ht, const DIY_Object *key, DIY_Object *value)
 {
-  ph_hashtbl_should_grow (&ht);
+  diy_hashtbl_should_grow (&ht);
 
   size_t cap = ht->cap;
-  size_t idx = ph_object_hashself (key) & (cap - 1);
+  size_t idx = diy_object_hashself (key) & (cap - 1);
   size_t dist = 0;
 
-  Entry curr_entry = (PH_Entry){ .key = key, .value = value };
+  Entry curr_entry = (DIY_Entry){ .key = key, .value = value };
   bool curr_occ = 1;
 
   while (true)
@@ -53,7 +53,7 @@ ph_hashtbl_insert (PH_Hashtbl *ht, const PH_Object *key, PH_Object *value)
           return;
         }
 
-      size_t existing_home = ph_object_hashself (key) & (cap - 1);
+      size_t existing_home = diy_object_hashself (key) & (cap - 1);
       size_t existing_dist = (idx + cap - existing_home) & (cap - 1);
 
       if (existing_dist < dist)
@@ -71,24 +71,24 @@ ph_hashtbl_insert (PH_Hashtbl *ht, const PH_Object *key, PH_Object *value)
     }
 }
 
-PH_Object *
-ph_hashtbl_find (PH_Hashtbl *ht, const PH_Object *key)
+DIY_Object *
+diy_hashtbl_find (DIY_Hashtbl *ht, const DIY_Object *key)
 {
   size_t cap = ht->cap;
-  size_t idx = ph_object_hashself (key) & (cap - 1);
+  size_t idx = diy_object_hashself (key) & (cap - 1);
   size_t dist = 0;
 
-  PH_Object *out_value = NULL;
+  DIY_Object *out_value = NULL;
 
   while (ht->occupied[idx])
     {
-      if (ph_object_equals (ht->entries[idx], key))
+      if (diy_object_equals (ht->entries[idx], key))
         {
           out_value = ht->entries[idx].value;
           break;
         }
 
-      size_t existing_home = ph_object_hashself (key) & (cap - 1);
+      size_t existing_home = diy_object_hashself (key) & (cap - 1);
       size_t existing_dist = (idx + cap - existing_home) & (cap - 1);
       if (existing_dist < dist)
         return NULL;
@@ -99,10 +99,10 @@ ph_hashtbl_find (PH_Hashtbl *ht, const PH_Object *key)
 }
 
 bool
-ph_hashtbl_delete (PH_Hashtbl *ht, const PH_Object *key)
+diy_hashtbl_delete (DIY_Hashtbl *ht, const DIY_Object *key)
 {
   size_t cap = ht->cap;
-  size_t idx = ph_object_hashself (key) & (cap - 1);
+  size_t idx = diy_object_hashself (key) & (cap - 1);
   size_t dist = 0;
 
   while (ht->occupied[idx])
@@ -112,7 +112,7 @@ ph_hashtbl_delete (PH_Hashtbl *ht, const PH_Object *key)
           size_t next = (idx + 1) & (cap - 1);
           while (ht->occupied[next])
             {
-              size_t home = ph_object_hashself (key) & (cap - 1);
+              size_t home = diy_object_hashself (key) & (cap - 1);
               size_t probe_len = (next + cap - home) & (cap - 1);
               if (probe_len == 0)
                 break;
@@ -128,7 +128,7 @@ ph_hashtbl_delete (PH_Hashtbl *ht, const PH_Object *key)
         }
 
       size_t existing_home
-          = ph_object_hashself (ht->entries[idex].key) & (cap - 1);
+          = diy_object_hashself (ht->entries[idex].key) & (cap - 1);
       size_t existing_dist = (idx + cap - existing_home) & (cap - 1);
       if (existing_dist < dist)
         return false;
