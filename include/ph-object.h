@@ -8,6 +8,7 @@ typedef struct PH_Object
   enum
   {
     OBJ_String,
+    OBJ_Character,
     OBJ_Symbol,
     OBJ_Closure,
     OBJ_Upvalue,
@@ -33,6 +34,7 @@ typedef struct PH_Object
   union
   {
     struct PH_String *as_string;
+    struct PH_Character *as_character;
     struct PH_Symbol *as_symbol;
     struct PH_Closure *as_closure;
     struct PH_Upvalue *as_upvalue;
