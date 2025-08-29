@@ -22,7 +22,7 @@
 
 \subsection{\nm: A short introduction}
 
-\nm is a general-purpose, extensible, type-safe and statically-typed imperative Wirthian-esque scripting/programming language with stellar support for multi-paradigm programming (functional and object-oriented). It is both AoT'd\footnote{Ahead-of-time compilation} and JIT'd\footnote{Just-in-time compilation}.
+\nm is a higher-order, high-level, general-purpose, extensible, type-safe and statically-typed imperative Wirthian-esque scripting/programming language with stellar support for multi-paradigm programming (functional and object-oriented). It is both AoT'd\footnote{Ahead-of-time compilation} and JIT'd\footnote{Just-in-time compilation}.
 
 Furthermore, \nm uses constraint-based type inference (a feature of functional languages, and more so, Rust) to allow user to forgo specification of types during programming.
 
@@ -134,12 +134,27 @@ The following tables list all the reserved keywords, and type terms for \nm, in 
 	\addkeyword{inherits}{Inheritation term}
 	\addkeyword{fun}{Closure disambiguator}
 	\addkeyword{sub}{Static function (subroutine)}
-	\addkeyword{meta}{Metaroutine (method)}
+	\addkeyword{metafn}{Metaroutine (method)}
 	\addkeyword{cfun}{C FFI function}
 	\addkeyword{ctype}{C FFI primitive type}
 	\addkeyword{cbundle}{C FFI struct type}
 	\addkeyword{cvariant}{C FFI tagged union type}
 \end{keywordlist}
 
+\begin{keywordlist}{Type qualifier \& modifier keywords}
+	\addkeyword{const}{Variable/actual parameter\footnote{An argument to ta function} \textit{can only} be modified through indirection}
+	\addkeyword{immut}{Variable/actual parameter \textit{cannot} be modified \textbf{at all}}
+	\addkeyword{local}{Variable \textit{shadows} variable of the same name from upper scopes}
+	\addkeyword{global}{This modifier \textit{unshades} the previous shadowing by \textit{local}}
+	\addkeyword{ref}{Actual parameter must be a pointer that \textit{cannot be null} (i.e. passed by reference)}
+	\addkeyword{val}{Actual parameter must be \textit{passed by value} (i.e. evaluated before passing on as an argument)}
+	\addkeyword{let}{Signals to the parser that, the RHS expression is an \textit{initializer}, see \cref{sec:assignment_operators}}
+\end{keywordlist}
+
+\begin{keywordlist}{Storage keywords}
+	\addkeyword{static}{The variable is serialized, stored inside the process image}
+	\addkeyword{new}{Box the result of expression on heap}
+	\addkeyword{delete}{Delete the boxed variable}
+\end{keywordlist}
 
 \end{document}
