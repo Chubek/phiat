@@ -1,5 +1,5 @@
-#ifndef PH_STRING
-#define PH_STRING
+#ifndef PH_STRING_H
+#define PH_STRING_H
 
 #define PH_STRING_GROWTH_RATION 0.95
 #define PH_STRING_GROWTH_FACTOR 1.6

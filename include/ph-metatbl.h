@@ -1,5 +1,5 @@
-#ifndef PH_METATBL
-#define PH_METATBL
+#ifndef PH_METATBL_H
+#define PH_METATBL_H
 
 
 

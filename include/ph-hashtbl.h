@@ -1,5 +1,5 @@
-#ifndef PH_SYMTBL
-#define PH_SYMTBL
+#ifndef PH_SYMTBL_H
+#define PH_SYMTBL_H
 
 #define PH_HASHTBL_GROWTH_RATIO 0.85
 #define PH_HASHTBL_GROWTH_FACTOR 2

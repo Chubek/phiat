@@ -1,5 +1,5 @@
-#ifndef PH_SYMBOL
-#define PH_SYMBOL
+#ifndef PH_SYMBOL_H
+#define PH_SYMBOL_H
 
 typedef struct PH_Symbol
 {
@@ -7,4 +7,4 @@ typedef struct PH_Symbol
   uint32_t hash;
 } PH_Symbol;
 
-#endif
+#endif1
