@@ -294,3 +294,4 @@ Thumbs.db
 # LaTeX compiler cache
 *.cache
 
+_build_specs/
