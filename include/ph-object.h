@@ -13,7 +13,7 @@ typedef struct PH_Object
     OBJ_Upvalue,
     OBJ_Tuple,
     OBJ_List,
-    OBJ_Array,
+    OBJ_DynArray,
     OBJ_Hashtbl,
     OBJ_Integer,
     OBJ_Rational,
@@ -38,7 +38,7 @@ typedef struct PH_Object
     struct PH_Upvalue *as_upvalue;
     struct PH_Tuple *as_tuple;
     struct PH_List *as_list;
-    struct PH_Array *as_array;
+    struct PH_DynArray *as_dynarray;
     struct PH_Hashtbl *as_hashtbl;
     struct PH_Integer *as_integer;
     struct PH_Rational *as_rational;
