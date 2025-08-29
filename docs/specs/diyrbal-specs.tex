@@ -63,15 +63,15 @@ Due to \textit{non-restrict} nature of \nm, \citework{} had a strong influence i
 
 \notebox{This implementation of \nm has been thoroughly checked with both Address Sanitizer and Valgrind for possible memory leaks, on several test scripts.}
 
-\subsection{C API and FFI}
+\subsection{C Interface and FFI}
 
-\nm yields a fully-featured C API, that ties into its FFI\footnote{Foreign Function Interface} with C.
+\nm yields a fully-featured C Interface, that ties into its FFI\footnote{Foreign Function Interface} with C.
 
 \subsection{The VM backend \& bytecode emitter}
 
 % TODO
 
-\subsection{The native-code emitter}
+\subsection{The native-code backend \& emitter}
 
 % TODO
 
@@ -150,12 +150,64 @@ The following tables list all the reserved keywords, and type terms for \nm, in 
 	\addkeyword{ref}{Actual parameter must be a pointer that \textit{cannot be null} (i.e. passed by reference)}
 	\addkeyword{val}{Actual parameter must be \textit{passed by value} (i.e. evaluated before passing on as an argument)}
 	\addkeyword{let}{Signals to the parser that, the RHS expression is an \textit{initializer}, see \cref{sec:assignment_operators}}
+	\addkeyword{volatile}{Signals to the both backends not to optimize away this variable (mostly vital for the native-code backend)}
 \end{keywordlist}
 
 \begin{keywordlist}{Storage keywords}
 	\addkeyword{static}{The variable is serialized, stored inside the process image}
-	\addkeyword{new}{Box the result of expression on heap}
+	\addkeyword{new}{Box the result of expression on the heap}
 	\addkeyword{delete}{Delete the boxed variable}
 \end{keywordlist}
+
+% TODO: more keyword categories
+
+\subsection{Binary \& unary operators}
+
+In \nm, assignment is an \textit{statement}, and not an expression. Therefore, I do not consider assignment to be a binary operator, the way it is in other C-dervied languages. However, \nm has a rich set of binary and unary operators, prefix and postfix. The following table shows them all.
+
+Within a bundle definition, you can change how a bundle instance reacts to these operators. See \cref{}.
+
+
+\begin{oplist}{Unary operators}
+	\addop{+}{unaryPlus}
+	\addop{-}{unaryMinus}
+	\addop{++}{unaryPreIncrement}
+	\addop{++}{unaryPostIncrement}
+	\addop{\-\-}{unaryPreDecrement}
+	\addop{\-\-}{unaryPostDecrement}
+	\addop{~}{unaryNot}{Unary bitwise not}
+	\addop{!}{unaryNegate}
+	\addop{[]}{unaryBracketAccess}
+	\addop{\{\}}{unaryCurlyAccess}
+	\addop{()}{unaryCall}
+	\addop{@}{unaryAddressOf}
+	\addop{^}{unaryDereference}
+	\addop{#}{binarySizeof}
+\end{oplist}
+
+\begin{oplist}{Binary operators}
+	\addop{+}{binaryAdd}
+	\addop{-}{binarySub}
+	\addop{*}{binaryTimes}
+	\addop{/}{binaryDiv}
+	\addop{\%}{binaryMod}
+	\addop{^}{binaryXor}
+	\addop{\|}{binaryOr}
+	\addop{\&}{binaryAnd}
+	\addop{\&\&}{binaryConjunct}
+	\addop{\|\|}{binaryDisjunct}
+	\addop{..}{binaryConcat}
+\end{oplist}
+
+\notebox{Since assignement is an statement, \nm does not yield inplace operators, like C and similar languages do. However, the assignment statements, as we shall see, provide a variety of tools to simulate them!}
+
+\begin{oplist}{Relational operators}
+	\addop{=}{relEq}
+	\addop{<>}{relNe}
+	\addop{>}{relGt}
+	\addop{>=}{relGe}
+	\addop{<}{relLt}
+	\addop{<=}{relLe}
+\end{oplist}
 
 \end{document}
