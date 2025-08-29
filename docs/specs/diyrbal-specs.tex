@@ -98,20 +98,48 @@ We shall first give an informal overview of the syntax, and later, formalize the
 
 This section is divided into many sub-sections, each relating back to various lexical and syntactic constructs of \nm.
 
-\subsubsection{Keywords and terminal symbols}
+\subsubsection{Reserved keywords and type terms}
 
-The following table lists they keywords for \nm.
+The following tables list all the reserved keywords, and type terms for \nm, in several categories.
 
-\begin{table}[h]
-	\centering
-	\caption{\nm Keywords}
+\notebox{Due to its Wirthian origins, in \nm, keywords are case-insensitive.}
 
-	\begin{tabular}{|c|c|c|c|}
-		\hline
-		new & delete & record & type \\ \hline
-		% TODO: add the rest
-	\end{tabular}
+\begin{keywordlist}{Primitive type terms}
+	\addkeyword{int8}{Signed 8-bit integer}
+	\addkeyword{uint8}{Unsigned 8-bit integer}
+	\addkeyword{int16}{Signed 16-bit integer}
+	\addkeyword{uint16}{Unsigned 16-bit integer}
+	\addkeyword{int32}{Signed 32-bit integer}
+	\addkeyword{uint32}{Unsigned 32-bit integer}
+	\addkeyword{int64}{Signed 64-bit integer}
+	\addkeyword{uint64}{Unsigned 64-bit integer}
+	\addkeyword{bignum}{Memory-resident bit-math integer}
+	\addkeyword{float32}{IEEE754 single-precision float}
+	\addkeyword{float64}{IEEE754 double-precision float}
+	\addkeyword{real}{SIMD-powered maximal-precision float}
+	\addkeyword{rational}{Fractional numbers}
+	\addkeyword{complex}{Complex numbers}
+	\addkeyword{uchar}{32-bit Unicode character}
+	\addkeyword{wchar}{System-locale character}
+	\addkeyowrd{char}{8-bit ASCII character}
+\end{keywordlist}
 
-\end{table}
+\begin{keywordlist}{Composite type terms}
+	\addkeyword{ustring}{32-bit Unicode string}
+	\addkeyword{wstring}{System-locale string}
+	\addkeyword{string}{ASCII string}
+	\addkeyword{record}{Static product type}
+	\addkeyword{variant}{Static sum and sum-of-product type}
+	\addkeyword{bundle}{Encapsulated meta-object type}
+	\addkeyword{inherits}{Inheritation term}
+	\addkeyword{fun}{Closure disambiguator}
+	\addkeyword{sub}{Static function (subroutine)}
+	\addkeyword{meta}{Metaroutine (method)}
+	\addkeyword{cfun}{C FFI function}
+	\addkeyword{ctype}{C FFI primitive type}
+	\addkeyword{cbundle}{C FFI struct type}
+	\addkeyword{cvariant}{C FFI tagged union type}
+\end{keywordlist}
+
 
 \end{document}
