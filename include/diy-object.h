@@ -29,6 +29,7 @@ typedef struct DIY_Object
     OBJ_Exception,
     OBJ_Regexp,
     OBJ_Chunk,
+    OBJ_StackFrame,
   } type;
 
   union
@@ -56,6 +57,7 @@ typedef struct DIY_Object
     struct DIY_Exception *as_exception;
     struct DIY_Regexp *as_regexp;
     struct DIY_Chunk *as_chunk;
+    struct DIY_StackFrame *as_stackframe;
   };
 
   struct DIY_Object *next;

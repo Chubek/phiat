@@ -14,7 +14,7 @@ typedef struct DIY_Coroutine
     CORO_Completed,
   } state;
 
-  struct DIY_Object *stackframe;
+  struct DIY_Object *fn;
   struct DIY_Object *yieldval;
   jmp_buf ctx;
 } DIY_Coroutine;
