@@ -1,6 +1,8 @@
 #ifndef DIY_COROUTINE_H
 #define DIY_COROUTINE_H
 
+#include <setjmp.h>
+
 typedef struct DIY_Coroutine
 {
   struct DIY_Object *refobj;
@@ -12,10 +14,10 @@ typedef struct DIY_Coroutine
     CORO_Completed,
   } state;
 
-  struct DIY_Stack *stack;
-  struct DIY_Object *retval;
-  struct DIY_Object *context;
-  struct DIY_Object *function;
+  struct DIY_Object *stackframe;
+  struct DIY_Object *yieldval;
+  jmp_buf ctx;
 } DIY_Coroutine;
+
 
 #endif
