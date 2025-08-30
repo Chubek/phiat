@@ -40,6 +40,7 @@ typedef struct DIY_Object
     struct DIY_Upvalue *as_upvalue;
     struct DIY_Tuple *as_tuple;
     struct DIY_List *as_list;
+    struct DIY_Set *as_set;
     struct DIY_DynArray *as_dynarray;
     struct DIY_Hashtbl *as_hashtbl;
     struct DIY_Integer *as_integer;
